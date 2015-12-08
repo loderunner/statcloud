@@ -1,7 +1,4 @@
-SC.initialize({
-    client_id : 'd8fed5233037c3f307ebdc1e0da29e4e',
-    redirect_uri : 'http://loderunner.github.io/statcloud/callback.html'
-  });
+SC.initialize(config);
 
 $(document).ready(function() {
     $('#login-button').click(function(event) {
