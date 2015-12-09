@@ -4,7 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Connect with SoundCloud</title>
   </head>
-  <body onload="window.opener.setTimeout(window.opener.SC.connectCallback, 1)">
+  <body>
     <b style="text-align: center;">This popup should automatically close in a few seconds</b>
+    <script type="text/javascript">
+        var token = window.location.hash;
+        var m = token.match(/#.*access_token=([0-9a-f]-[0-9a-f]{6}-[0-9a-f]{6}-[0-9a-f]{16}).*/);
+        if (m.length === 2) {
+            window.localStorage.setItem('access_token', m[1]);
+            window.close();
+        }
+    </script>
   </body>
 </html>
