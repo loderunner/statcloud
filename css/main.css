@@ -8,3 +8,7 @@ body {
     width : 100%;
     z-index : 2000;
 }
+
+#activity-button-span {
+    position : relative;
+}

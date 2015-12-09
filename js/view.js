@@ -37,13 +37,17 @@ $(document).ready(function() {
             , hwaccel: false // Whether to use hardware acceleration
             , position: 'absolute' // Element positioning
         })
-        .spin($('#stats-button').get(0));
+        .spin($('#activity-button-span')[0]);
+
+        $('#activity-button').addClass('disabled');
 
         getActivities().then(function(activities) {
             spinner.stop();
+            $('#activity-button').removeClass('disabled');
             $('#stats-button').removeClass('disabled');
         }, function() {
             spinner.stop();
+            $('#activity-button').removeClass('disabled');
         });
     });
 
