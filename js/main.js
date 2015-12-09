@@ -46,8 +46,16 @@ $(document).ready(function() {
     });
 
     $('#activity-button').click(function() {
+        var spinner = new Spinner({
+            position : 'relative'
+        })
+        .spin($('#stats-button').get(0));
+
         getActivities().then(function(activities) {
+            spinner.stop();
             $('#stats-button').removeClass('disabled');
+        }, function() {
+            spinner.stop();
         });
     });
 
