@@ -5,15 +5,9 @@ var initSoundcloud = function() {
     SC.initialize(config);
 }
 
-var tokenChanged = function(e) {
-    if (e.key === 'access_token') {
-        initSoundcloud();
-    }
-};
-
 var login = function() {
     initSoundcloud();
-    SC.connect();
+    return SC.connect();
 }
 
 var _getActivities = function(params, resolve, reject) {
@@ -39,10 +33,10 @@ var getActivities = function() {
 };
 
 $(document).ready(function() {
-    window.addEventListener('storage', tokenChanged);
-
     $('#login-button').click(function() {
-        login();
+        login().then(function() {
+            $('#activity-button').removeClass('disabled');
+        });
     });
 
     $('#activity-button').click(function() {
