@@ -13,7 +13,7 @@ var login = function() {
 }
 
 var _getActivities = function(params, resolve, reject) {
-    SC.get('/me/activities', params)
+    SC.get('/me/favorites', params)
         .then(function(value) {
             activities = activities.concat(value.collection);
             if (value.hasOwnProperty('next_href')) {
@@ -27,9 +27,7 @@ var _getActivities = function(params, resolve, reject) {
 }
 
 var getActivities = function() {
-    var p = new Promise(function(resolve, reject) {
-        _getActivities({limit : 200}, resolve, reject);
+    return new Promise(function(resolve, reject) {
+        _getActivities({limit : 200, linked_partitioning : 1}, resolve, reject);
     });
-
-    return p;
 };
