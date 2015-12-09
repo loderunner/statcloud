@@ -1,13 +1,15 @@
 var activities = [];
 
-var initSoundcloud = function() {
-    config.oauth_token = window.localStorage.getItem('access_token');
-    SC.initialize(config);
-}
-
 var login = function() {
-    initSoundcloud();
-    return SC.connect();
+    if (window.localStorage.access_token) {
+        config.oauth_token = window.localStorage.access_token;
+    }
+    SC.initialize(config);
+    return SC.connect().then(function(res) {
+        if (res.oauth_token) {
+            window.localStorage.access_token = res.oauth_token;
+        }
+    });
 }
 
 var _getActivities = function(params, resolve, reject) {
@@ -31,29 +33,3 @@ var getActivities = function() {
 
     return p;
 };
-
-$(document).ready(function() {
-    $('#login-button').click(function() {
-        login().then(function() {
-            $('#activity-button').removeClass('disabled');
-        });
-    });
-
-    $('#activity-button').click(function() {
-        var spinner = new Spinner({
-            position : 'relative'
-        })
-        .spin($('#stats-button').get(0));
-
-        getActivities().then(function(activities) {
-            spinner.stop();
-            $('#stats-button').removeClass('disabled');
-        }, function() {
-            spinner.stop();
-        });
-    });
-
-    $('#stats-button').click(function() {
-        console.log(activities);
-    });
-});
