@@ -35,3 +35,10 @@ var getFavorites = function() {
         _getFavorites({limit : 200, linked_partitioning : 1}, resolve, reject);
     });
 };
+
+var topGenres = function() {
+    var count = _.countBy(favorites, 'genre');
+    var genres = _.sortBy(_.keys(count), function (genre) { return count[genre]; });
+
+    return genres;
+}

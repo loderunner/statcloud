@@ -18,6 +18,7 @@ var displayAlert = function(message, type) {
 }
 
 $(document).ready(function() {
+
     $('#login-button').click(function() {
         login().then(function() {
             $('#favorite-button').removeClass('disabled');
@@ -66,5 +67,9 @@ $(document).ready(function() {
 
     $('#stats-button').click(function() {
         displayAlert(new Error("Not implemented yet."));
+
+        _.each(topGenres(), function(genre) {
+            $('#main-container').append($('<div>' + genre + '</div>'));
+        });
     });
 });
