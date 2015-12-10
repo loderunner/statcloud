@@ -20,14 +20,14 @@ var displayAlert = function(message, type) {
 $(document).ready(function() {
     $('#login-button').click(function() {
         login().then(function() {
-            $('#activity-button').removeClass('disabled');
+            $('#favorite-button').removeClass('disabled');
         },
         function(reason) {
             displayAlert(reason);
         });
     });
 
-    $('#activity-button').click(function() {
+    $('#favorite-button').click(function() {
         var spinner = new Spinner({
           lines: 11 // The number of lines to draw
         , length: 22 // The length of each line
@@ -50,21 +50,21 @@ $(document).ready(function() {
         , hwaccel: false // Whether to use hardware acceleration
         , position: 'absolute' // Element positioning
         })
-        .spin($('#activity-button-span')[0]);
+        .spin($('#favorite-button-span')[0]);
 
-        $('#activity-button').addClass('disabled');
+        $('#favorite-button').addClass('disabled');
 
-        getActivities().then(function(activities) {
+        getFavorites().then(function(favorites) {
             spinner.stop();
-            $('#activity-button').removeClass('disabled');
+            $('#favorite-button').removeClass('disabled');
             $('#stats-button').removeClass('disabled');
         }, function() {
             spinner.stop();
-            $('#activity-button').removeClass('disabled');
+            $('#favorite-button').removeClass('disabled');
         });
     });
 
     $('#stats-button').click(function() {
-        console.log(activities);
+        console.log(favorites);
     });
 });

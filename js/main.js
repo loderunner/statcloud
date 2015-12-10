@@ -4,12 +4,16 @@ var login = function() {
     if (window.localStorage.access_token) {
         config.oauth_token = window.localStorage.access_token;
     }
-    SC.initialize(config);
-    return SC.connect().then(function(res) {
-        if (res.oauth_token) {
-            window.localStorage.access_token = res.oauth_token;
-        }
-    });
+    try {
+        SC.initialize(config);
+        return SC.connect().then(function(res) {
+            if (res.oauth_token) {
+                window.localStorage.access_token = res.oauth_token;
+            }
+        });
+    } catch(e) {
+        displayAlert(e);
+    }
 }
 
 var _getFavorites = function(params, resolve, reject) {
@@ -17,7 +21,7 @@ var _getFavorites = function(params, resolve, reject) {
         .then(function(value) {
             favorites = favorites.concat(value.collection);
             if (value.hasOwnProperty('next_href')) {
-                _getfavorites(getQuery(value.next_href), resolve, reject);
+                _getFavorites(getQuery(value.next_href), resolve, reject);
             } else {
                 resolve(favorites);
             }
