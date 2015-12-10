@@ -23,10 +23,6 @@
         <![endif]-->
     <div class="alert-container" id="alert-container">
         <div class="container">
-            <div class="alert alert-danger" role="alert">
-                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span id="alert-text">&nbsp;</span>
-            </div>
         </div>
     </div>
 
@@ -41,6 +37,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
+    <script type="text/html" id="components">
+        <!-- alert box -->
+        <div class="alert" role="alert" id="Alert">
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span id="alert-text">&nbsp;</span>
+        </div>
+    </script>
+
     <script src="js/vendor/underscore-min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
@@ -50,6 +54,7 @@
     <script src="js/plugins.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script src="js/view.js"></script>
 
