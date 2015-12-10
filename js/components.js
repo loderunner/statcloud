@@ -1,10 +1,14 @@
 
 var components;
 
+/**
+ * Creates a new component.
+ * @param {String} cls Component's class name
+ * @return {Object} new jQuery-style DOM element
+ */
 var _new = function(cls) {
     if (!components) {
         throw new Error("Components not loaded yet.");
-        return undefined;
     }
 
     var node = components.find('#' + cls);
@@ -14,7 +18,7 @@ var _new = function(cls) {
         return node;
     }
 
-    return undefined;
+    return;
 }
 
 $(document).ready(function() {
