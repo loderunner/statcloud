@@ -14,7 +14,7 @@ var displayAlert = function(message, type) {
         });
     });
 
-    $('#alert-container .container').append(alrt);
+    $('#alert-container .container').prepend(alrt);
 }
 
 $(document).ready(function() {
