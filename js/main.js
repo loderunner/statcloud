@@ -1,4 +1,4 @@
-var activities = [];
+var favorites = [];
 
 var login = function() {
     if (window.localStorage.access_token) {
@@ -12,22 +12,22 @@ var login = function() {
     });
 }
 
-var _getActivities = function(params, resolve, reject) {
+var _getFavorites = function(params, resolve, reject) {
     SC.get('/me/favorites', params)
         .then(function(value) {
-            activities = activities.concat(value.collection);
+            favorites = favorites.concat(value.collection);
             if (value.hasOwnProperty('next_href')) {
-                _getActivities(getQuery(value.next_href), resolve, reject);
+                _getfavorites(getQuery(value.next_href), resolve, reject);
             } else {
-                resolve(activities);
+                resolve(favorites);
             }
         }, function(reason) {
             reject(reason);
         });
 }
 
-var getActivities = function() {
+var getFavorites = function() {
     return new Promise(function(resolve, reject) {
-        _getActivities({limit : 200, linked_partitioning : 1}, resolve, reject);
+        _getFavorites({limit : 200, linked_partitioning : 1}, resolve, reject);
     });
 };

@@ -1,16 +1,29 @@
 
-$(document).ready(function() {
-    $('.alert-container .alert button.close').click(function(e) {
-        $(this.parentNode).fadeOut('fast');
+var displayAlert = function(message, type) {
+    if (!type) {
+        type = 'danger';
+    }
+
+    var alrt = _new('Alert');
+    alrt.addClass('alert-' + type)
+    alrt.find('.alert-text').text(message);
+
+    alrt.find('button.close').click(function(e) {
+        $(this.parentNode).fadeOut('fast', function() {
+            $(this).remove();
+        });
     });
 
+    $('#alert-container .container').append(alrt);
+}
+
+$(document).ready(function() {
     $('#login-button').click(function() {
         login().then(function() {
             $('#activity-button').removeClass('disabled');
         },
         function(reason) {
-            $('#alert-container').hidden = false;
-            $('#alert-text').text(reason);
+            displayAlert(reason);
         });
     });
 
