@@ -8,6 +8,12 @@ body {
     z-index : 2000;
 }
 
+.alert-container .alert {
+    width : 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #favorite-button-span {
     position : relative;
 }
