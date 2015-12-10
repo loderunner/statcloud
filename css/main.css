@@ -1,22 +1,14 @@
+body {
+    padding-top : 50px;
+}
 
+.alert-container {
+    display : none;
+    position : fixed;
+    width : 100%;
+    z-index : 2000;
+}
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#activity-button-span {
+    position : relative;
+}
