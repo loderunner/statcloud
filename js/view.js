@@ -65,6 +65,6 @@ $(document).ready(function() {
     });
 
     $('#stats-button').click(function() {
-        console.log(favorites);
+        displayAlert(new Error("Not implemented yet."));
     });
 });
