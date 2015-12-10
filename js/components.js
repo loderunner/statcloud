@@ -3,14 +3,15 @@ var components;
 
 var _new = function(cls) {
     if (!components) {
-        throw "Components not loaded yet.";
+        throw new Error("Components not loaded yet.");
         return undefined;
     }
 
     var node = components.find('#' + cls);
     if (node) {
-        node.removeClass(cls);
-        return node.clone();
+        node = node.clone();
+        node.removeAttr('id');
+        return node;
     }
 
     return undefined;
@@ -18,6 +19,6 @@ var _new = function(cls) {
 
 $(document).ready(function() {
     $.get('js/components.html', function(data) {
-
+        components = $(data);
     });
 });
