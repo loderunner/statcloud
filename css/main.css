@@ -1,11 +1,11 @@
 body {
-    padding-top : 50px;
 }
 
 .alert-container {
     position : fixed;
     width : 100%;
     z-index : 2000;
+    top : 20px;
 }
 
 .alert-container .alert {
@@ -17,4 +17,8 @@ body {
 
 #favorite-button-span {
     position : relative;
+}
+
+#main-container {
+    padding-top : 50px;
 }
