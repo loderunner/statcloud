@@ -8,11 +8,17 @@ var displayAlert = function(message, type) {
     alrt.addClass('alert-' + type)
     alrt.find('.alert-text').text(message);
 
-    alrt.find('button.close').click(function(e) {
-        $(this.parentNode).fadeOut('fast', function() {
+    alrt.find('button.close').click(function () { 
+        $(this.parentNode).stop(true).fadeOut('fast', function() {
             $(this).remove();
         });
     });
+
+    if (type === 'success') {
+        alrt.delay(3000).fadeOut('slow', function() {
+            $(this).remove();
+        });
+    }
 
     $('#alert-container .container').prepend(alrt);
 }
@@ -59,15 +65,15 @@ $(document).ready(function() {
             spinner.stop();
             $('#favorite-button').removeClass('disabled');
             $('#stats-button').removeClass('disabled');
-        }, function() {
+
+            displayAlert('Success', 'success');
+        }, function(reason) {
             spinner.stop();
             $('#favorite-button').removeClass('disabled');
         });
     });
 
     $('#stats-button').click(function() {
-        displayAlert(new Error("Not implemented yet."));
-
         _.each(topGenres(), function(genre) {
             $('#main-container').append($('<div>' + genre + '</div>'));
         });
